@@ -5,5 +5,5 @@ import 'package:flutter/widgets.dart';
 
 List<Map<String, Object>> pages = [
   {'page': HomeScreen(), 'title': 'Home', 'icon': Icon(Icons.home)},
-  {'page': GlobalScreen(), 'title': 'TV', 'icon': Icon(Icons.public)}
+  {'page': GlobalScreen(), 'title': 'Global', 'icon': Icon(Icons.public)}
 ];

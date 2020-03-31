@@ -43,5 +43,8 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
+        <meta-data 
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyAgBRQKzdokmQBYI-latcPloWEnDhimplQ"/> <!--Google Cloud Platform Console, and enable google map sdk android , after that create api key in credential-->
     </application>
 </manifest>
