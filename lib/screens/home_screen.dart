@@ -1,7 +1,11 @@
+import 'package:corona/bloc/home_bloc.dart';
+import 'package:corona/models/summary_indonesia.dart';
+import 'package:corona/repositories/corona_repository.dart';
 import 'package:corona/screens/widgets/map_with_marker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -10,6 +14,15 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   static const LatLng _center = const LatLng(-8.0657, 111.9025);
+
+  HomeBloc _bloc;
+
+  @override
+  void initState() {
+    super.initState();
+    final repository = Provider.of<CoronaRepository>(context, listen: false);
+    _bloc = HomeBloc(repository);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -118,17 +131,22 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 25),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                _buildItemVictim(
-                    title: '1.414', note: 'Positif', color: Colors.blue),
-                _buildItemVictim(
-                    title: '75', note: 'Sembuh', color: Colors.green),
-                _buildItemVictim(
-                    title: '122', note: 'Meninggal', color: Colors.red)
-              ],
+            child: StreamBuilder<IndonesiaSummary>(
+              stream: _bloc.summaryIndoStream,
+              builder: (context, snapshot) {
+                return Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    _buildItemVictim(
+                        title: snapshot.data.positif ?? '0', note: 'Positif', color: Colors.blue),
+                    _buildItemVictim(
+                        title: snapshot.data.sembuh ?? '0', note: 'Sembuh', color: Colors.green),
+                    _buildItemVictim(
+                        title: snapshot.data.meninggal ?? '0', note: 'Meninggal', color: Colors.red)
+                  ],
+                );
+              }
             ),
           )
         ],
