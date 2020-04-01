@@ -1,4 +1,5 @@
 import 'package:corona/bloc/home_bloc.dart';
+import 'package:corona/models/indo_victims.dart';
 import 'package:corona/models/summary_indonesia.dart';
 import 'package:corona/repositories/corona_repository.dart';
 import 'package:corona/screens/widgets/map_with_marker.dart';
@@ -102,7 +103,9 @@ class _HomeScreenState extends State<HomeScreen> {
       child: Column(
         children: <Widget>[
           _buildVictims(),
-          SizedBox(height: 25,),
+          SizedBox(
+            height: 25,
+          ),
           _buildGoogleMap(heightPage),
         ],
       ),
@@ -132,22 +135,27 @@ class _HomeScreenState extends State<HomeScreen> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 25),
             child: StreamBuilder<IndonesiaSummary>(
-              stream: _bloc.summaryIndoStream,
-              builder: (context, snapshot) {
-                return Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    _buildItemVictim(
-                        title: snapshot.data.positif ?? '0', note: 'Positif', color: Colors.blue),
-                    _buildItemVictim(
-                        title: snapshot.data.sembuh ?? '0', note: 'Sembuh', color: Colors.green),
-                    _buildItemVictim(
-                        title: snapshot.data.meninggal ?? '0', note: 'Meninggal', color: Colors.red)
-                  ],
-                );
-              }
-            ),
+                stream: _bloc.summaryIndoStream,
+                builder: (context, snapshot) {
+                  return Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      _buildItemVictim(
+                          title: snapshot.data.positif ?? '0',
+                          note: 'Positif',
+                          color: Colors.blue),
+                      _buildItemVictim(
+                          title: snapshot.data.sembuh ?? '0',
+                          note: 'Sembuh',
+                          color: Colors.green),
+                      _buildItemVictim(
+                          title: snapshot.data.meninggal ?? '0',
+                          note: 'Meninggal',
+                          color: Colors.red)
+                    ],
+                  );
+                }),
           )
         ],
       ),
@@ -196,7 +204,13 @@ class _HomeScreenState extends State<HomeScreen> {
           aspectRatio: 1 / 1.2,
           child: Container(
             width: double.infinity,
-            child: GoogleMapWithMarker(center: _center),
+            child: StreamBuilder<List<IndoVictims>>(
+                stream: _bloc.victimsIndoStream,
+                builder: (context, snapshot) {
+                  return snapshot.hasData
+                      ? GoogleMapWithMarker(indoLocation: snapshot.data,)
+                      : Container();
+                }),
           ),
         ),
       ],
