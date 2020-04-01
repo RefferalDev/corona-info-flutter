@@ -212,18 +212,16 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Container(
             width: double.infinity,
             child: StreamBuilder<List<IndoVictims>>(
-                stream: _bloc.victimsIndoStream,
-                builder: (context, snapshot) {
-                  if (snapshot.hasData) {
-                    print('SNAPSHOT - ${snapshot.data.length}');
-                    return GoogleMapWithMarker(
-                      indoLocation: snapshot.data,
-                      markerIcon: _markerIcon,
-                    );
-                  } else {
-                    return Container();
-                  }
-                }),
+              stream: _bloc.victimsIndoStream,
+              builder: (context, snapshot) {
+                return snapshot.hasData
+                    ? GoogleMapWithMarker(
+                        indoLocation: snapshot.data,
+                        markerIcon: _markerIcon,
+                      )
+                    : GoogleMapWithMarker();
+              },
+            ),
           ),
         ),
       ],

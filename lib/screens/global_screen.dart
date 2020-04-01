@@ -1,7 +1,11 @@
+import 'package:corona/bloc/global_bloc.dart';
+import 'package:corona/models/global.dart';
+import 'package:corona/repositories/corona_repository.dart';
 import 'package:corona/screens/widgets/map_with_marker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:provider/provider.dart';
 
 class GlobalScreen extends StatefulWidget {
   @override
@@ -9,7 +13,17 @@ class GlobalScreen extends StatefulWidget {
 }
 
 class _GlobalScreenState extends State<GlobalScreen> {
-  static const LatLng _center = const LatLng(-8.0657, 111.9025);
+
+  BitmapDescriptor _markerIcon;
+  GlobalBloc _bloc;
+
+  @override
+  void initState() {
+    initializeMarker();
+    super.initState();
+    final _repository = Provider.of<CoronaRepository>(context, listen: false);
+    _bloc = GlobalBloc(_repository);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +43,14 @@ class _GlobalScreenState extends State<GlobalScreen> {
       bottom: -50 ,
       left: 0,
       right: 0,
-      child: GoogleMapWithMarker(),
+      child: StreamBuilder<List<Global>>(
+        stream: _bloc.globalStream,
+        builder: (context, snapshot) {
+          return snapshot.hasData
+           ? GoogleMapWithMarker(globalLocation: snapshot.data, markerIcon: _markerIcon, mapZoom: 0.0,)
+           : GoogleMapWithMarker(mapZoom: 0.0,);
+        }
+      ),
     );
   }
 
@@ -83,4 +104,11 @@ class _GlobalScreenState extends State<GlobalScreen> {
       ],
     );
   }
+
+  Future<void> initializeMarker() async {
+    BitmapDescriptor.fromAssetImage(ImageConfiguration(devicePixelRatio: 2.5),
+            'assets/images/marker.png')
+        .then((value) => _markerIcon = value);
+  }
+
 }

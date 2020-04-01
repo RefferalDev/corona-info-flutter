@@ -1,3 +1,4 @@
+import 'package:corona/models/global.dart';
 import 'package:corona/models/indo_province.dart';
 import 'package:corona/models/indo_victims.dart';
 import 'package:corona/models/summary_indonesia.dart';
@@ -28,4 +29,10 @@ class CoronaRepository {
       return _data;
     }).toList();
   }
+
+  Future<List<Global>> getGlobalVictims() async {
+    Response data = await _client.get(url: '');
+    return (data.data as List).map<Global>((json) => Global.fromJson(json)).toList();
+  }
+
 }
