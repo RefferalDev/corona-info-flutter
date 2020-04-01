@@ -1,11 +1,11 @@
 
 
-class IndoRegion {
+class IndoVictims {
   Attributes attributes;
 
-  IndoRegion({this.attributes});
+  IndoVictims({this.attributes});
 
-  IndoRegion.fromJson(Map<String, dynamic> json) {
+  IndoVictims.fromJson(Map<String, dynamic> json) {
     attributes = json['attributes'] != null
         ? new Attributes.fromJson(json['attributes'])
         : null;
@@ -27,6 +27,8 @@ class Attributes {
   int kasusPosi;
   int kasusSemb;
   int kasusMeni;
+  double latitude;
+  double longitude;
 
   Attributes(
       {this.fID,

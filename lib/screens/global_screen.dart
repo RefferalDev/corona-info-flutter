@@ -29,7 +29,7 @@ class _GlobalScreenState extends State<GlobalScreen> {
       bottom: -50 ,
       left: 0,
       right: 0,
-      child: GoogleMapWithMarker(center: _center),
+      child: GoogleMapWithMarker(),
     );
   }
 
