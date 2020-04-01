@@ -14,12 +14,13 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  static const LatLng _center = const LatLng(-8.0657, 111.9025);
+  BitmapDescriptor _markerIcon;
 
   HomeBloc _bloc;
 
   @override
   void initState() {
+    initializeMarker();
     super.initState();
     final repository = Provider.of<CoronaRepository>(context, listen: false);
     _bloc = HomeBloc(repository);
@@ -142,15 +143,21 @@ class _HomeScreenState extends State<HomeScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       _buildItemVictim(
-                          title: snapshot.data.positif ?? '0',
+                          title: snapshot.hasData
+                              ? snapshot.data.positif ?? '0'
+                              : '0',
                           note: 'Positif',
                           color: Colors.blue),
                       _buildItemVictim(
-                          title: snapshot.data.sembuh ?? '0',
+                          title: snapshot.hasData
+                              ? snapshot.data.sembuh ?? '0'
+                              : '0',
                           note: 'Sembuh',
                           color: Colors.green),
                       _buildItemVictim(
-                          title: snapshot.data.meninggal ?? '0',
+                          title: snapshot.hasData
+                              ? snapshot.data.meninggal ?? '0'
+                              : '0',
                           note: 'Meninggal',
                           color: Colors.red)
                     ],
@@ -207,13 +214,25 @@ class _HomeScreenState extends State<HomeScreen> {
             child: StreamBuilder<List<IndoVictims>>(
                 stream: _bloc.victimsIndoStream,
                 builder: (context, snapshot) {
-                  return snapshot.hasData
-                      ? GoogleMapWithMarker(indoLocation: snapshot.data,)
-                      : Container();
+                  if (snapshot.hasData) {
+                    print('SNAPSHOT - ${snapshot.data.length}');
+                    return GoogleMapWithMarker(
+                      indoLocation: snapshot.data,
+                      markerIcon: _markerIcon,
+                    );
+                  } else {
+                    return Container();
+                  }
                 }),
           ),
         ),
       ],
     );
+  }
+
+  Future<void> initializeMarker() async {
+    BitmapDescriptor.fromAssetImage(ImageConfiguration(devicePixelRatio: 2.5),
+            'assets/images/marker.png')
+        .then((value) => _markerIcon = value);
   }
 }

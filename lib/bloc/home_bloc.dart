@@ -28,7 +28,7 @@ class HomeBloc {
         .getIndonesiaSummary()
         .then((value) => changeSummary(value))
         .catchError((er) => print('error - $er'))
-        .whenComplete(() => print('complete'));
+        .whenComplete(() => print('Summary Complete'));
   }
 
   Future<void> _getIndoVictims() async {
@@ -36,7 +36,7 @@ class HomeBloc {
         .getIndonesiaVictims()
         .then((value) => changeVictimcIndo(value))
         .catchError((er) => print('Error - $er'))
-        .whenComplete(() => print('Complete'));
+        .whenComplete(() => print('Victims Complete'));
   }
 
   void dispose() {

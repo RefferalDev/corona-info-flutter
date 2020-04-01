@@ -2,18 +2,18 @@
 import 'dart:convert';
 
 class IndonesiaSummary {
-  String name;
-  String positif;
-  String sembuh;
-  String meninggal;
+  String name = '';
+  String positif = '0';
+  String sembuh = '0';
+  String meninggal = '0';
 
   IndonesiaSummary({this.name, this.positif, this.sembuh, this.meninggal});
 
   IndonesiaSummary.fromJson(Map<String, dynamic> json) {
     name = json['name'];
-    positif = json['positif'];
-    sembuh = json['sembuh'];
-    meninggal = json['meninggal'];
+    positif = json['positif'] ?? '0';
+    sembuh = json['sembuh'] ?? '0';
+    meninggal = json['meninggal'] ?? '0';
   }
 
   Map<String, dynamic> toJson() {
