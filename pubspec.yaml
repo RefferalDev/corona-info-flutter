@@ -32,6 +32,8 @@ dependencies:
   rxdart: ^0.23.1
   # google map
   google_maps_flutter: ^0.5.25+2
+  # date
+  intl: ^0.16.1
 
 dev_dependencies:
   flutter_test:
