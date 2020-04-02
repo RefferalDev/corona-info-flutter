@@ -26,6 +26,11 @@ class _GlobalScreenState extends State<GlobalScreen> {
   }
 
   @override
+  void dispose() {
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
