@@ -60,7 +60,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget _buildHeaderTitle(double height) {
     return Container(
       color: Colors.blue,
-      height: height,
+      height: height + 50,
       width: double.infinity,
       padding: EdgeInsets.all(20.0),
       child: Column(
