@@ -5,8 +5,9 @@ import 'package:corona/services/app_exceptions.dart';
 import 'package:dio/dio.dart';
 
 class NetworkClient {
-  static const CONNECTION_TIME_OUT = 5 * 1000;
-  static const RECEIVE_TIME_OUT = 3 * 1000;
+  static const CONNECTION_TIME_OUT = 25 * 1000;
+  static const SEND_TIME_OUT = 25 * 1000;
+  static const RECEIVE_TIME_OUT = 25 * 1000;
 
   Dio _dio;
 
@@ -19,6 +20,7 @@ class NetworkClient {
       baseUrl: BASE_URL,
       connectTimeout: CONNECTION_TIME_OUT,
       receiveTimeout: RECEIVE_TIME_OUT,
+      sendTimeout: SEND_TIME_OUT,
     );
   }
 
