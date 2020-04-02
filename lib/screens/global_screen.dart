@@ -27,6 +27,7 @@ class _GlobalScreenState extends State<GlobalScreen> {
 
   @override
   void dispose() {
+    _bloc.dispose();
     super.dispose();
   }
 
