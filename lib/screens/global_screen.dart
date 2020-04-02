@@ -1,5 +1,6 @@
 import 'package:corona/bloc/global_bloc.dart';
 import 'package:corona/models/global.dart';
+import 'package:corona/models/global_total.dart';
 import 'package:corona/repositories/corona_repository.dart';
 import 'package:corona/screens/widgets/map_with_marker.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +14,6 @@ class GlobalScreen extends StatefulWidget {
 }
 
 class _GlobalScreenState extends State<GlobalScreen> {
-
   BitmapDescriptor _markerIcon;
   GlobalBloc _bloc;
 
@@ -40,17 +40,22 @@ class _GlobalScreenState extends State<GlobalScreen> {
   Widget _buildMap() {
     return Positioned(
       top: 0,
-      bottom: -50 ,
+      bottom: -50,
       left: 0,
       right: 0,
       child: StreamBuilder<List<Global>>(
-        stream: _bloc.globalStream,
-        builder: (context, snapshot) {
-          return snapshot.hasData
-           ? GoogleMapWithMarker(globalLocation: snapshot.data, markerIcon: _markerIcon, mapZoom: 0.0,)
-           : GoogleMapWithMarker(mapZoom: 0.0,);
-        }
-      ),
+          stream: _bloc.globalStream,
+          builder: (context, snapshot) {
+            return snapshot.hasData
+                ? GoogleMapWithMarker(
+                    globalLocation: snapshot.data,
+                    markerIcon: _markerIcon,
+                    mapZoom: 0.0,
+                  )
+                : GoogleMapWithMarker(
+                    mapZoom: 0.0,
+                  );
+          }),
     );
   }
 
@@ -78,12 +83,33 @@ class _GlobalScreenState extends State<GlobalScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              _buildItemVictim(
-                  title: '1.414', note: 'Positif', color: Colors.blue),
-              _buildItemVictim(
-                  title: '75', note: 'Sembuh', color: Colors.green),
-              _buildItemVictim(
-                  title: '122', note: 'Meninggal', color: Colors.red)
+              StreamBuilder<GlobalTotal>(
+                stream: _bloc.positifStream,
+                builder: (context, snapshot) {
+                  return _buildItemVictim(
+                      title: snapshot.hasData ? snapshot.data.value : '0',
+                      note: 'Positif',
+                      color: Colors.blue);
+                },
+              ),
+              StreamBuilder<GlobalTotal>(
+                stream: _bloc.recoveredStream,
+                builder: (context, snapshot) {
+                  return _buildItemVictim(
+                      title: snapshot.hasData ? snapshot.data.value : '0',
+                      note: 'Sembuh',
+                      color: Colors.green);
+                },
+              ),
+              StreamBuilder<GlobalTotal>(
+                stream: _bloc.diedStream,
+                builder: (context, snapshot) {
+                  return _buildItemVictim(
+                      title: snapshot.hasData ? snapshot.data.value : '0',
+                      note: 'Meninggal',
+                      color: Colors.red);
+                },
+              )
             ],
           ),
         ),
@@ -110,5 +136,4 @@ class _GlobalScreenState extends State<GlobalScreen> {
             'assets/images/marker.png')
         .then((value) => _markerIcon = value);
   }
-
 }

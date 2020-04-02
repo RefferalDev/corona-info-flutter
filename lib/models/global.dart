@@ -1,3 +1,17 @@
+enum Status { POSITIF, RECOVERED, DIED }
+
+globalStatus(Status status) {
+  switch (status) {
+    case Status.POSITIF:
+      return 'positif';
+    case Status.RECOVERED:
+      return 'sembuh';
+    case Status.DIED:
+      return 'meninggal';
+    default:
+      return "positif";
+  }
+}
 
 class Global {
   AttributesGlobal attributes;
