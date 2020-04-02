@@ -36,23 +36,21 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     final _height = MediaQuery.of(context).size.height;
-    return SafeArea(
-      child: Scaffold(
-        body: Stack(
-          children: <Widget>[
-            Positioned(
-                top: 0,
-                left: 0,
-                right: 0,
-                child: _buildHeaderTitle((_height / 3) - 25)),
-            CustomScrollView(
-              slivers: <Widget>[
-                _buildAppBarHelper(_height / 3),
-                _buildContent(_height)
-              ],
-            )
-          ],
-        ),
+    return Scaffold(
+      body: Stack(
+        children: <Widget>[
+          Positioned(
+              top: 0,
+              left: 0,
+              right: 0,
+              child: _buildHeaderTitle((_height / 3) - 25)),
+          CustomScrollView(
+            slivers: <Widget>[
+              _buildAppBarHelper(_height / 3),
+              _buildContent(_height)
+            ],
+          )
+        ],
       ),
     );
   }

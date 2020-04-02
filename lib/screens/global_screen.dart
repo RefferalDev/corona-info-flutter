@@ -33,11 +33,9 @@ class _GlobalScreenState extends State<GlobalScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: Stack(
-          children: <Widget>[_buildMap(), _buildVictims()],
-        ),
+    return Scaffold(
+      body: Stack(
+        children: <Widget>[_buildMap(), _buildVictims()],
       ),
     );
   }
