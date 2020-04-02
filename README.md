@@ -2,7 +2,7 @@
 
 Corona virus information, data from [Kawal corona](https://kawalcorona.com/)
 
-![Screenshot](corona_1.jpeg)     ![Screenshot](corona_2.jpeg)
+![Screenshot](corona_home.jpeg)           ![Screenshot](corona_global.jpeg)
 
 ## Getting Started
 
