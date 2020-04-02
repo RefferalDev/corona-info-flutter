@@ -1,4 +1,3 @@
-
 import 'dart:convert';
 
 class IndonesiaSummary {
@@ -24,11 +23,4 @@ class IndonesiaSummary {
     data['meninggal'] = this.meninggal;
     return data;
   }
-
-  static List<IndonesiaSummary> summaryFromList(String response) {
-    var parsed = json.decode(response) as List;
-    var list = parsed.map((i) => IndonesiaSummary.fromJson(i)).toList();
-    return list;
-  }
-
 }

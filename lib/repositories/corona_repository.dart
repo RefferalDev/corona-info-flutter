@@ -12,11 +12,13 @@ class CoronaRepository {
 
   CoronaRepository(client) : _client = client;
 
+  /// total indonesia victims
   Future<IndonesiaSummary> getIndonesiaSummary() async {
     Response data = await _client.get(url: 'indonesia');
     return IndonesiaSummary.fromJson(data.data[0]);
   }
 
+  /// total victims per province
   Future<List<IndoVictims>> getIndonesiaVictims() async {
     Response data = await _client.get(url: 'indonesia/provinsi');
     return (data.data as List).map<IndoVictims>((json) {
@@ -32,6 +34,7 @@ class CoronaRepository {
     }).toList();
   }
 
+  /// total global victims
   Future<List<Global>> getGlobalVictims() async {
     Response data = await _client.get(url: '');
     return (data.data as List).map<Global>((json) => Global.fromJson(json)).toList();
