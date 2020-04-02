@@ -13,6 +13,7 @@ enum ThemeColor {
 }
 
 class AppStyle {
+  static const String FONT_NUNITO_SANS = 'NunitoSans';
   static Color getColor([ThemeColor color = ThemeColor.primary]) {
     switch (color) {
       case ThemeColor.blackText:
@@ -33,4 +34,5 @@ class AppStyle {
         return HexColor("FFFFFF");
     }
   }
+
 }
