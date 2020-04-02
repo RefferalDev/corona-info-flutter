@@ -1,5 +1,3 @@
-
-
 import 'dart:ui';
 
 import 'package:corona/utils/color_util.dart';
@@ -35,5 +33,4 @@ class AppStyle {
         return HexColor("FFFFFF");
     }
   }
-
 }

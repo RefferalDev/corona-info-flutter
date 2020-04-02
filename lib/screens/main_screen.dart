@@ -1,9 +1,7 @@
-
 import 'package:corona/data/app.dart';
 import 'package:corona/styles/app_style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-
 
 class MainScreen extends StatefulWidget {
   @override
