@@ -3,6 +3,7 @@ import 'package:corona/models/indo_victims.dart';
 import 'package:corona/models/summary_indonesia.dart';
 import 'package:corona/repositories/corona_repository.dart';
 import 'package:corona/screens/widgets/map_with_marker.dart';
+import 'package:corona/utils/date_format.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -35,23 +36,21 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     final _height = MediaQuery.of(context).size.height;
-    return SafeArea(
-      child: Scaffold(
-        body: Stack(
-          children: <Widget>[
-            Positioned(
-                top: 0,
-                left: 0,
-                right: 0,
-                child: _buildHeaderTitle((_height / 3) - 25)),
-            CustomScrollView(
-              slivers: <Widget>[
-                _buildAppBarHelper(_height / 3),
-                _buildContent(_height)
-              ],
-            )
-          ],
-        ),
+    return Scaffold(
+      body: Stack(
+        children: <Widget>[
+          Positioned(
+              top: 0,
+              left: 0,
+              right: 0,
+              child: _buildHeaderTitle((_height / 3) - 25)),
+          CustomScrollView(
+            slivers: <Widget>[
+              _buildAppBarHelper(_height / 3),
+              _buildContent(_height)
+            ],
+          )
+        ],
       ),
     );
   }
@@ -68,10 +67,10 @@ class _HomeScreenState extends State<HomeScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Text('Kawal Corona',
-              style: TextStyle(color: Colors.white, fontSize: 20)),
+              style: TextStyle(color: Colors.white, fontSize: 28)),
           SizedBox(height: 10),
           Text('informasi tentang covid-19',
-              style: TextStyle(color: Colors.white, fontSize: 14))
+              style: TextStyle(color: Colors.white, fontSize: 18))
         ],
       ),
     );
@@ -133,7 +132,7 @@ class _HomeScreenState extends State<HomeScreen> {
           SizedBox(
             height: 5,
           ),
-          Text('Tanggal 31 Maret 2020',
+          Text('Tanggal ${currentDate()}',
               style: TextStyle(
                   color: Colors.grey, fontSize: 12.0, letterSpacing: 0.5)),
           SizedBox(
@@ -206,7 +205,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         Padding(
           padding: const EdgeInsets.only(left: 20, right: 20),
-          child: Text('pemetaan provinsi yang terkena corona di indonesia',
+          child: Text('Pemetaan provinsi yang terkena corona di indonesia',
               style: TextStyle(
                   color: Colors.grey, fontSize: 12.0, letterSpacing: 0.5)),
         ),

@@ -1,6 +1,8 @@
-# corona
+# Info Corona Virus
 
-corona virus informatoin
+Corona virus information, data from [Kawal corona](https://kawalcorona.com/)
+
+![Screenshot](corona_1.jpeg)!   [Screenshot](corona_2.jpeg)
 
 ## Getting Started
 
