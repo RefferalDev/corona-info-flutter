@@ -40,7 +40,7 @@ class _MainScreenState extends State<MainScreen> {
       (item) {
         navBarItems.add(
           BottomNavigationBarItem(
-              icon: item['icon'], title: Text(item['title'])),
+              icon: item['icon'], title: Text(item['title'], style: TextStyle(fontFamily: AppStyle.FONT_NUNITO_SANS),)),
         );
       },
     );

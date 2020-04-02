@@ -3,6 +3,7 @@ import 'package:corona/models/global.dart';
 import 'package:corona/models/global_total.dart';
 import 'package:corona/repositories/corona_repository.dart';
 import 'package:corona/screens/widgets/map_with_marker.dart';
+import 'package:corona/styles/app_style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -125,11 +126,11 @@ class _GlobalScreenState extends State<GlobalScreen> {
   Widget _buildItemVictim({String title, String note, Color color}) {
     return Column(
       children: <Widget>[
-        Text(title, style: TextStyle(color: color, fontSize: 28)),
+        Text(title, style: TextStyle(color: color, fontSize: 28, fontFamily: AppStyle.FONT_NUNITO_SANS, fontWeight: FontWeight.w700)),
         SizedBox(height: 5),
         Text(
           note,
-          style: TextStyle(color: Colors.black, fontSize: 12),
+          style: TextStyle(color: Colors.black, fontSize: 12, fontFamily: AppStyle.FONT_NUNITO_SANS),
         )
       ],
     );

@@ -3,6 +3,7 @@ import 'package:corona/models/indo_victims.dart';
 import 'package:corona/models/summary_indonesia.dart';
 import 'package:corona/repositories/corona_repository.dart';
 import 'package:corona/screens/widgets/map_with_marker.dart';
+import 'package:corona/styles/app_style.dart';
 import 'package:corona/utils/date_format.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -67,10 +68,10 @@ class _HomeScreenState extends State<HomeScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Text('Kawal Corona',
-              style: TextStyle(color: Colors.white, fontSize: 28)),
+              style: TextStyle(color: Colors.white, fontSize: 28, fontFamily: AppStyle.FONT_NUNITO_SANS, fontWeight: FontWeight.w700)),
           SizedBox(height: 10),
-          Text('informasi tentang covid-19',
-              style: TextStyle(color: Colors.white, fontSize: 18))
+          Text('Informasi tentang covid-19',
+              style: TextStyle(color: Colors.white, fontSize: 18, fontFamily: AppStyle.FONT_NUNITO_SANS))
         ],
       ),
     );
@@ -126,15 +127,15 @@ class _HomeScreenState extends State<HomeScreen> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Text('Data Korban Corono di Indonesia',
+          Text('Data Korban Corona di Indonesia',
               style: TextStyle(
-                  color: Colors.black, fontSize: 16.0, letterSpacing: 0.5)),
+                  color: Colors.black, fontSize: 16.0, letterSpacing: 0.5, fontFamily: AppStyle.FONT_NUNITO_SANS, fontWeight: FontWeight.w700)),
           SizedBox(
             height: 5,
           ),
           Text('Tanggal ${currentDate()}',
               style: TextStyle(
-                  color: Colors.grey, fontSize: 12.0, letterSpacing: 0.5)),
+                  color: Colors.grey, fontSize: 12.0, letterSpacing: 0.5, fontFamily: AppStyle.FONT_NUNITO_SANS)),
           SizedBox(
             height: 20,
           ),
@@ -178,11 +179,11 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget _buildItemVictim({String title, String note, Color color}) {
     return Column(
       children: <Widget>[
-        Text(title, style: TextStyle(color: color, fontSize: 28)),
+        Text(title, style: TextStyle(color: color, fontSize: 28, fontFamily: AppStyle.FONT_NUNITO_SANS, fontWeight: FontWeight.w700)),
         SizedBox(height: 5),
         Text(
           note,
-          style: TextStyle(color: Colors.black, fontSize: 12),
+          style: TextStyle(color: Colors.black, fontSize: 12, fontFamily: AppStyle.FONT_NUNITO_SANS),
         )
       ],
     );
@@ -198,7 +199,7 @@ class _HomeScreenState extends State<HomeScreen> {
           padding: const EdgeInsets.only(left: 20, right: 20),
           child: Text('Daerah terkena Corona',
               style: TextStyle(
-                  color: Colors.black, fontSize: 16.0, letterSpacing: 0.5)),
+                  color: Colors.black, fontSize: 16.0, letterSpacing: 0.5, fontFamily: AppStyle.FONT_NUNITO_SANS, fontWeight: FontWeight.w700)),
         ),
         SizedBox(
           height: 5,
@@ -207,7 +208,7 @@ class _HomeScreenState extends State<HomeScreen> {
           padding: const EdgeInsets.only(left: 20, right: 20),
           child: Text('Pemetaan provinsi yang terkena corona di indonesia',
               style: TextStyle(
-                  color: Colors.grey, fontSize: 12.0, letterSpacing: 0.5)),
+                  color: Colors.grey, fontSize: 12.0, letterSpacing: 0.5, fontFamily: AppStyle.FONT_NUNITO_SANS)),
         ),
         SizedBox(
           height: 10,
