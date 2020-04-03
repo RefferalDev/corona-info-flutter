@@ -59,7 +59,12 @@ class _HomeScreenState extends State<HomeScreen> {
   /// build header title
   Widget _buildHeaderTitle(double height) {
     return Container(
-      color: Colors.blue,
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: ExactAssetImage('assets/images/corona.jpg'),
+          fit: BoxFit.fill
+        ),
+      ),
       height: height + 50,
       width: double.infinity,
       padding: EdgeInsets.all(20.0),
@@ -68,10 +73,16 @@ class _HomeScreenState extends State<HomeScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Text('Kawal Corona',
-              style: TextStyle(color: Colors.white, fontSize: 28, fontFamily: AppStyle.FONT_NUNITO_SANS, fontWeight: FontWeight.w700)),
-          SizedBox(height: 10),
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 28,
+                  fontFamily: AppStyle.FONT_NUNITO_SANS,
+                  fontWeight: FontWeight.w700)),
           Text('Informasi tentang covid-19',
-              style: TextStyle(color: Colors.white, fontSize: 18, fontFamily: AppStyle.FONT_NUNITO_SANS))
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 18,
+                  fontFamily: AppStyle.FONT_NUNITO_SANS))
         ],
       ),
     );
@@ -129,13 +140,20 @@ class _HomeScreenState extends State<HomeScreen> {
         children: <Widget>[
           Text('Data Korban Corona di Indonesia',
               style: TextStyle(
-                  color: Colors.black, fontSize: 16.0, letterSpacing: 0.5, fontFamily: AppStyle.FONT_NUNITO_SANS, fontWeight: FontWeight.w700)),
+                  color: Colors.black,
+                  fontSize: 16.0,
+                  letterSpacing: 0.5,
+                  fontFamily: AppStyle.FONT_NUNITO_SANS,
+                  fontWeight: FontWeight.w700)),
           SizedBox(
             height: 5,
           ),
           Text('Tanggal ${currentDate()}',
               style: TextStyle(
-                  color: Colors.grey, fontSize: 12.0, letterSpacing: 0.5, fontFamily: AppStyle.FONT_NUNITO_SANS)),
+                  color: Colors.grey,
+                  fontSize: 12.0,
+                  letterSpacing: 0.5,
+                  fontFamily: AppStyle.FONT_NUNITO_SANS)),
           SizedBox(
             height: 20,
           ),
@@ -179,11 +197,19 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget _buildItemVictim({String title, String note, Color color}) {
     return Column(
       children: <Widget>[
-        Text(title, style: TextStyle(color: color, fontSize: 28, fontFamily: AppStyle.FONT_NUNITO_SANS, fontWeight: FontWeight.w700)),
+        Text(title,
+            style: TextStyle(
+                color: color,
+                fontSize: 28,
+                fontFamily: AppStyle.FONT_NUNITO_SANS,
+                fontWeight: FontWeight.w700)),
         SizedBox(height: 5),
         Text(
           note,
-          style: TextStyle(color: Colors.black, fontSize: 12, fontFamily: AppStyle.FONT_NUNITO_SANS),
+          style: TextStyle(
+              color: Colors.black,
+              fontSize: 12,
+              fontFamily: AppStyle.FONT_NUNITO_SANS),
         )
       ],
     );
@@ -199,7 +225,11 @@ class _HomeScreenState extends State<HomeScreen> {
           padding: const EdgeInsets.only(left: 20, right: 20),
           child: Text('Daerah terkena Corona',
               style: TextStyle(
-                  color: Colors.black, fontSize: 16.0, letterSpacing: 0.5, fontFamily: AppStyle.FONT_NUNITO_SANS, fontWeight: FontWeight.w700)),
+                  color: Colors.black,
+                  fontSize: 16.0,
+                  letterSpacing: 0.5,
+                  fontFamily: AppStyle.FONT_NUNITO_SANS,
+                  fontWeight: FontWeight.w700)),
         ),
         SizedBox(
           height: 5,
@@ -208,7 +238,10 @@ class _HomeScreenState extends State<HomeScreen> {
           padding: const EdgeInsets.only(left: 20, right: 20),
           child: Text('Pemetaan provinsi yang terkena corona di indonesia',
               style: TextStyle(
-                  color: Colors.grey, fontSize: 12.0, letterSpacing: 0.5, fontFamily: AppStyle.FONT_NUNITO_SANS)),
+                  color: Colors.grey,
+                  fontSize: 12.0,
+                  letterSpacing: 0.5,
+                  fontFamily: AppStyle.FONT_NUNITO_SANS)),
         ),
         SizedBox(
           height: 10,

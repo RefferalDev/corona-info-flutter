@@ -59,8 +59,8 @@ class AttributesGlobal {
     oBJECTID = json['OBJECTID'];
     countryRegion = json['Country_Region'];
     lastUpdate = json['Last_Update'];
-    lat = json['Lat'].toDouble() ?? 0.0;
-    long = json['Long_'].toDouble() ?? 0.0;
+    lat = json['Lat'] != null ? json['Lat'].toDouble() ?? 0.0 : 0.0;
+    long = json['Long_'] != null ? json['Long_'].toDouble() ?? 0.0 : 0.0;
     confirmed = json['Confirmed'];
     deaths = json['Deaths'];
     recovered = json['Recovered'];

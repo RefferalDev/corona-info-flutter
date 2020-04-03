@@ -126,7 +126,7 @@ class _GlobalScreenState extends State<GlobalScreen> {
   Widget _buildItemVictim({String title, String note, Color color}) {
     return Column(
       children: <Widget>[
-        Text(title, style: TextStyle(color: color, fontSize: 28, fontFamily: AppStyle.FONT_NUNITO_SANS, fontWeight: FontWeight.w700)),
+        Text(title, style: TextStyle(color: color, fontSize: 24, fontFamily: AppStyle.FONT_NUNITO_SANS, fontWeight: FontWeight.w700)),
         SizedBox(height: 5),
         Text(
           note,
